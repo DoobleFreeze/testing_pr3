@@ -42,7 +42,6 @@ class Board:
         return self.board
 
     def open_place(self, x, y):
-        # TODO: Открытие клетки
         if self.user_board[y][x] == '*':
             if self.board[y][x] == "b":
                 self.user_board = self.board
@@ -75,4 +74,5 @@ class Board:
 
     def check_bomb(self, x, y):
         # TODO: Поставить метку о бомбе
+
         return None

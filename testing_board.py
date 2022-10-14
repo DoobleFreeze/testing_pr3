@@ -46,8 +46,8 @@ class TestBoard(unittest.TestCase):
             count_bomb += i.count('b')
         self.assertEqual(count_bomb, 1)
 
-        e = self.board_1_x_1.check_bomb(1, 1)
-        self.assertEqual(e[0][1][1], "F")
+        e = self.board_1_x_1.check_bomb(0, 0)
+        self.assertEqual(e[0][0][0], "F")
         self.assertEqual(e[1], True)
 
         # if b[0][0] == 'b':
