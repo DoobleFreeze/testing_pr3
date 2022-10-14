@@ -10,7 +10,6 @@ class Board:
         self.user_board = [["*"] * self.weight for _ in range(self.height)]
 
     def create_board(self):
-        # TODO: Растановка бомб и чисел на поле
         count_bomb = self.count_bomb
         while count_bomb != 0:
             x = random.randint(0, self.weight - 1)
@@ -44,7 +43,35 @@ class Board:
 
     def open_place(self, x, y):
         # TODO: Открытие клетки
-        return None
+        if self.user_board[y][x] == '*':
+            if self.board[y][x] == "b":
+                self.user_board = self.board
+                return self.user_board, True
+            self.user_board[y][x] = self.board[y][x]
+            if self.board[y][x] != 0:
+                return self.user_board, False
+            if x - 1 >= 0 and y - 1 >= 0:
+                self.open_place(x - 1, y - 1)
+            if y - 1 >= 0:
+                self.open_place(x, y - 1)
+            if x + 1 < self.weight and y - 1 >= 0:
+                self.open_place(x + 1, y - 1)
+            if x - 1 >= 0:
+                self.open_place(x - 1, y)
+            if x + 1 < self.weight:
+                self.open_place(x + 1, y)
+            if x - 1 >= 0 and y + 1 < self.height:
+                self.open_place(x - 1, y + 1)
+            if y + 1 < self.height:
+                self.open_place(x, y + 1)
+            if x + 1 < self.weight and y + 1 < self.height:
+                self.open_place(x + 1, y + 1)
+        # for j in self.user_board:
+        #     for i in j:
+        #         print(i, end=' ')
+        #     print()
+        # print()
+        return self.user_board, False
 
     def check_bomb(self, x, y):
         # TODO: Поставить метку о бомбе
