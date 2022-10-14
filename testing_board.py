@@ -18,12 +18,13 @@ class TestBoard(unittest.TestCase):
             count_bomb += i.count('b')
         self.assertEqual(count_bomb, 5)
 
-        c = a.copy()
-        c[0][0] = b[0][0]
         if b[0][0] == 'b':
             lose = True
+            c = b.copy()
         else:
             lose = False
+            c = a.copy()
+            c[0][0] = b[0][0]
         self.assertEqual(self.board_5_x_5.open_place(0, 0), (c, lose))
 
     def test_board_1_x_1(self):
@@ -36,12 +37,13 @@ class TestBoard(unittest.TestCase):
             count_bomb += i.count('b')
         self.assertEqual(count_bomb, 1)
 
-        c = a.copy()
-        c[0][0] = b[0][0]
         if b[0][0] == 'b':
             lose = True
+            c = b.copy()
         else:
             lose = False
+            c = a.copy()
+            c[0][0] = b[0][0]
         self.assertEqual(self.board_1_x_1.open_place(0, 0), (c, lose))
 
     def test_board_3_x_3(self):
@@ -54,12 +56,13 @@ class TestBoard(unittest.TestCase):
             count_bomb += i.count('b')
         self.assertEqual(count_bomb, 2)
 
-        c = a.copy()
-        c[0][0] = b[0][0]
         if b[0][0] == 'b':
             lose = True
+            c = b.copy()
         else:
             lose = False
+            c = a.copy()
+            c[0][0] = b[0][0]
         self.assertEqual(self.board_3_x_3.open_place(0, 0), (c, lose))
 
 
