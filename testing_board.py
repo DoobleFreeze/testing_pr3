@@ -25,7 +25,9 @@ class TestBoard(unittest.TestCase):
             lose = False
             c = a.copy()
             c[0][0] = b[0][0]
-        self.assertEqual(self.board_5_x_5.open_place(0, 0), (c, lose))
+        d = self.board_5_x_5.open_place(0, 0)
+        self.assertEqual(d[0][0][0], c[0][0])
+        self.assertEqual(d[1], lose)
 
     def test_board_1_x_1(self):
         a = [["*"] * 1 for _ in range(1)]
@@ -44,7 +46,9 @@ class TestBoard(unittest.TestCase):
             lose = False
             c = a.copy()
             c[0][0] = b[0][0]
-        self.assertEqual(self.board_1_x_1.open_place(0, 0), (c, lose))
+        d = self.board_1_x_1.open_place(0, 0)
+        self.assertEqual(d[0][0][0], c[0][0])
+        self.assertEqual(d[1], lose)
 
     def test_board_3_x_3(self):
         a = [["*"] * 3 for _ in range(3)]
@@ -63,7 +67,9 @@ class TestBoard(unittest.TestCase):
             lose = False
             c = a.copy()
             c[0][0] = b[0][0]
-        self.assertEqual(self.board_3_x_3.open_place(0, 0), (c, lose))
+        d = self.board_3_x_3.open_place(0, 0)
+        self.assertEqual(d[0][0][0], c[0][0])
+        self.assertEqual(d[1], lose)
 
 
 if __name__ == "__main__":
