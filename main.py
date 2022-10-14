@@ -74,5 +74,13 @@ class Board:
 
     def check_bomb(self, x, y):
         # TODO: Поставить метку о бомбе
-
-        return None
+        if self.user_board[y][x] == "*":
+            self.user_board[y][x] = "F"
+        else:
+            self.user_board[y][x] = "*"
+        for j in range(self.height):
+            for i in range(self.weight):
+                if self.user_board[j][i] != self.board[j][i]:
+                    if not (self.user_board[j][i] == "F" and self.board[j][i] == 'b'):
+                        return self.user_board, False
+        return self.user_board, True
