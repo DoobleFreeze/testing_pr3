@@ -18,6 +18,10 @@ class TestBoard(unittest.TestCase):
             count_bomb += i.count('b')
         self.assertEqual(count_bomb, 5)
 
+        e = self.board_5_x_5.check_bomb(1, 1)
+        self.assertEqual(e[0][1][1], "F")
+        self.assertEqual(e[1], False)
+
         if b[0][0] == 'b':
             lose = True
             c = b.copy()
@@ -27,7 +31,10 @@ class TestBoard(unittest.TestCase):
             c[0][0] = b[0][0]
         d = self.board_5_x_5.open_place(0, 0)
         self.assertEqual(d[0][0][0], c[0][0])
-        self.assertEqual(d[1], lose)
+        if lose:
+            self.assertEqual(d[1], lose)
+        else:
+            self.assertEqual(d[0][1][1], "F")
 
     def test_board_1_x_1(self):
         a = [["*"] * 1 for _ in range(1)]
@@ -39,16 +46,23 @@ class TestBoard(unittest.TestCase):
             count_bomb += i.count('b')
         self.assertEqual(count_bomb, 1)
 
-        if b[0][0] == 'b':
-            lose = True
-            c = b.copy()
-        else:
-            lose = False
-            c = a.copy()
-            c[0][0] = b[0][0]
-        d = self.board_1_x_1.open_place(0, 0)
-        self.assertEqual(d[0][0][0], c[0][0])
-        self.assertEqual(d[1], lose)
+        e = self.board_1_x_1.check_bomb(1, 1)
+        self.assertEqual(e[0][1][1], "F")
+        self.assertEqual(e[1], True)
+
+        # if b[0][0] == 'b':
+        #     lose = True
+        #     c = b.copy()
+        # else:
+        #     lose = False
+        #     c = a.copy()
+        #     c[0][0] = b[0][0]
+        # d = self.board_1_x_1.open_place(0, 0)
+        # self.assertEqual(d[0][0][0], c[0][0])
+        # if lose:
+        #     self.assertEqual(d[1], lose)
+        # else:
+        #     self.assertEqual(d[0][1][1], "F")
 
     def test_board_3_x_3(self):
         a = [["*"] * 3 for _ in range(3)]
@@ -60,6 +74,10 @@ class TestBoard(unittest.TestCase):
             count_bomb += i.count('b')
         self.assertEqual(count_bomb, 2)
 
+        e = self.board_3_x_3.check_bomb(1, 1)
+        self.assertEqual(e[0][1][1], "F")
+        self.assertEqual(e[1], False)
+
         if b[0][0] == 'b':
             lose = True
             c = b.copy()
@@ -69,7 +87,10 @@ class TestBoard(unittest.TestCase):
             c[0][0] = b[0][0]
         d = self.board_3_x_3.open_place(0, 0)
         self.assertEqual(d[0][0][0], c[0][0])
-        self.assertEqual(d[1], lose)
+        if lose:
+            self.assertEqual(d[1], lose)
+        else:
+            self.assertEqual(d[0][1][1], "F")
 
 
 if __name__ == "__main__":
